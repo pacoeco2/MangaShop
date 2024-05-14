@@ -1,22 +1,65 @@
-body{
-    
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
-header{
-    background-color: green;
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.perfil-container{
-    display: inline-block;
-    align-items: center;
-    text-align: center;
-    margin-left: 50%;
-}
-
-footer{
-    align-items: center;
-}
-
-.Libros{
+.perfil-container {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.perfil-container a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.perfil-container img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.Libros {
+    flex-basis: calc(33.33% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.Libros img {
+    width: 100%;
+    height: auto;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
