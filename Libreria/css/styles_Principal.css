@@ -1,0 +1,14 @@
+body{
+
+}
+
+header{
+    background-color: green;
+}
+
+.perfil-container{
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    margin-left: 50%;
+}
