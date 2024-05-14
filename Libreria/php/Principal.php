@@ -45,6 +45,7 @@ if($query){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type = "text/css" href="../css/styles_Principal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>Libreria</title>
 </head>
 <body>
@@ -59,7 +60,7 @@ if($query){
     </header>
 
     <?php 
-    $que = mysqli_query($conexionU, "SELECT Nombre_Manga, Foto FROM inventario");
+    $que = mysqli_query($conexionU, "SELECT id,Nombre_Manga, Foto FROM inventario");
 
     if($que){
         while($row = mysqli_fetch_assoc($que)){
@@ -77,9 +78,10 @@ if($query){
             // Muestra el manga
             echo '<div class="Libros">
                     <a class = "Nombre_Manga">'.$nom_man.'</a>
-                    <a class = "portada">
+                    <a class = "portada" href="masinfo.php?id='.$row["id"].'">
                         <img src="'.$imagensrc_1.'" alt="Portada del Manga" style="max-width: 200px; max-height: 200px">
                     </a>
+                    <button class="CarritoP"><i class="bi bi-cart-plus"></i></button>
                   </div>';
         }
     }else{
@@ -90,4 +92,14 @@ if($query){
     mysqli_close($conexionU);
 ?>
 </body>
+
+<footer>
+    <div class="registro">
+        <a href="../Inventario/Registrar_Mangas.php">¿Registrar un manga?</a>
+    </div>
+    <div class="info">
+
+    </div>
+</footer>
+
 </html>

@@ -1,5 +1,5 @@
 body{
-
+    
 }
 
 header{
@@ -11,4 +11,12 @@ header{
     align-items: center;
     text-align: center;
     margin-left: 50%;
+}
+
+footer{
+    align-items: center;
+}
+
+.Libros{
+    display: flex;
 }

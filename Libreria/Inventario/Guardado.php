@@ -7,8 +7,46 @@ if(isset($_POST['nombre'], $_FILES['foto'], $_POST['precio']) && $_POST['nombre'
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
 
+    if(isset($_FILES['foto']) && $_FILES['foto']['tmp_name'] != ""){
+        // Carga la imagen
+        $imagen = imagecreatefromstring(file_get_contents($_FILES['foto']['tmp_name']));
+
+        // Obtiene las dimensiones originales de la imagen
+        $anchoOriginal = imagesx($imagen);
+        $altoOriginal = imagesy($imagen);
+
+        // Define las dimensiones máximas
+        $anchoMaximo = 500;
+        $altoMaximo = 500;
+
+        // Calcula las nuevas dimensiones manteniendo la proporción
+        if($anchoOriginal > $altoOriginal){
+            $anchoNuevo = $anchoMaximo;
+            $altoNuevo = $altoOriginal * ($anchoMaximo / $anchoOriginal);
+        }else{
+            $altoNuevo = $altoMaximo;
+            $anchoNuevo = $anchoOriginal * ($altoMaximo / $altoOriginal);
+        }
+
+        // Crea una nueva imagen con las dimensiones nuevas
+        $imagenNueva = imagecreatetruecolor($anchoNuevo, $altoNuevo);
+
+        // Redimensiona la imagen original y la copia en la imagen nueva
+        imagecopyresampled($imagenNueva, $imagen, 0, 0, 0, 0, $anchoNuevo, $altoNuevo, $anchoOriginal, $altoOriginal);
+
+        // Convierte la imagen nueva a una cadena de bytes
+        ob_start();
+        imagejpeg($imagenNueva);
+        $imagenBytes = ob_get_clean();
+
+        // Codifica la cadena de bytes para su uso en SQL
+        $imagenSQL = addslashes($imagenBytes);
+    }else{
+        // Maneja el caso en que no se subió un archivo
+        $imagenSQL = NULL;
+    }
     $query ="INSERT INTO inventario(Nombre_Manga, Foto, Descripcion, Precio)
-             VALUES ('$nombre', '$foto', '$descripcion', '$precio')";
+             VALUES ('$nombre', '$imagenSQL', '$descripcion', '$precio')";
 
     $veri_manga = mysqli_query($conexionU, "SELECT * FROM inventario WHERE Nombre_Manga = '$nombre'");
 

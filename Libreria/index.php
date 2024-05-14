@@ -54,7 +54,5 @@
         </div>
      </div>
      <script src="js/script.js"></script>
-<br><br><br><br><br>
-<a href="Inventario/Registrar_Mangas.php">¿Registrar un manga?</a>
 </body>
 </html>
