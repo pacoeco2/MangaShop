@@ -1,3 +1,3 @@
 <?php 
-$conexionU = mysqli_connect("localhost", "root","", "libreria");
+$conexionU = mysqli_connect("localhost", "root","Jfaap231;", "libreria");
 ?>

@@ -1,5 +1,5 @@
 <?php
-$bd = new mysqli("localhost","root","","libreria");
+$bd = new mysqli("localhost","root","Jfaap231;","libreria");
 $id=$_GET["id"];
 $query=mysqli_query($bd,"SELECT * from inventario WHERE id=$id");
 while ($datos=mysqli_fetch_array($query)) {
