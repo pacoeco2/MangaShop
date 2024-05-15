@@ -60,11 +60,12 @@ if($query){
     </header>
 
     <?php 
-    $que = mysqli_query($conexionU, "SELECT id,Nombre_Manga, Foto FROM inventario");
+    $que = mysqli_query($conexionU, "SELECT id,Nombre_Manga,Precio,Foto FROM inventario");
 
     if($que){
         while($row = mysqli_fetch_assoc($que)){
             $nom_man = $row['Nombre_Manga'];
+            $pre_man = $row['Precio'];
             $portada = $row['Foto'];
 
             if($portada){
@@ -81,6 +82,7 @@ if($query){
                     <a class = "portada" href="masinfo.php?id='.$row["id"].'">
                         <img src="'.$imagensrc_1.'" alt="Portada del Manga" style="max-width: 200px; max-height: 200px">
                     </a>
+                    <a class = "Precio_Manga">$'.$pre_man.'</a>
                     <button class="CarritoP"><i class="bi bi-cart-plus"></i></button>
                   </div>';
         }
@@ -98,7 +100,10 @@ if($query){
         <a href="../Inventario/Registrar_Mangas.php">¿Registrar un manga?</a>
     </div>
     <div class="info">
-
+        <h3>Para mas informacion contactar a:</h3>
+        <a href="mailto:pacoeco23@hotmail.com">pacoeco23@hotmail.com</a><br>
+        <a href="mailto:equintero13@alumnos.uaq.mx">equintero13@alumnos.uaq.mx</a><br>
+        <a href="mailto:bgarduno05@alumnos.uaq.mx">bgarduno05@alumnos.uaq.mx</a>
     </div>
 </footer>
 
