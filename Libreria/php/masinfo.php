@@ -44,7 +44,8 @@ if($query){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type = "text/css" href="../css/styles_Principal.css">
+    <link rel="stylesheet" type = "text/css" href="../css/styles_MI.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>Mas informacion</title>
 </head>
 <body>
@@ -57,36 +58,34 @@ if($query){
             <a href="Cerrar_sesion.php">Cerrar sesión</a>
         </div>
     </header>
-
-    <?php
-    $bd = new mysqli("localhost","root","Jfaap231;","libreria");
-    $id=$_GET["id"];
-    $query=mysqli_query($bd,"SELECT * from inventario WHERE id=$id");
-    while ($datos=mysqli_fetch_array($query)) {
-        echo "<h1>".$datos["Nombre_Manga"]."</h1>";
-        echo "<p>".$datos["Descripcion"]."</p>";
-        
-        // Crea $imagensrc_1 a partir de los datos de la imagen de la base de datos
-        $portada = $datos['Foto'];
-        $tipoImagen1 = "image/jpeg";
-        $imagenbase64_1 = base64_encode($portada);
-        $imagensrc_1 = "data:$tipoImagen1;base64,$imagenbase64_1";
-        
-        echo '<img src="'.$imagensrc_1.'" alt="Portada del Manga" style="max-width: 200px; max-height: 200px">';
-        echo "<p>$".$datos["Precio"]."</p>";
-    }
-    ?>
-
+    <div class="Contenedor">
+        <?php
+        $bd = new mysqli("localhost","root","","libreria");
+        $id=$_GET["id"];
+        $query=mysqli_query($bd,"SELECT * from inventario WHERE id=$id");
+        while ($datos=mysqli_fetch_array($query)) {
+            $portada = $datos['Foto'];
+            $tipoImagen1 = "image/jpeg";
+            $imagenbase64_1 = base64_encode($portada);
+            $imagensrc_1 = "data:$tipoImagen1;base64,$imagenbase64_1";
+            echo "<img src=".$imagensrc_1." alt='Portada del Manga' class='Portada'>";
+            echo "<div class='InfoD'>";
+            echo "<h1 class='Titulo'>".$datos["Nombre_Manga"]."</h1>";
+            echo "<p class='Desc'>".$datos["Descripcion"]."</p>";
+            echo "<p class='Precio'>$".$datos["Precio"]."</p>";
+            echo '<button class="CarritoP"><i class="bi bi-cart-plus"></i></button>';
+            echo "</div>";
+        }
+        ?>
+    </div>
 
     <footer>
         <div class="registro">
             <a href="../Inventario/Registrar_Mangas.php">¿Registrar un manga?</a>
         </div>
         <div class="info">
-            <h3>Para mas informacion contactar a:</h3>
-            <a href="mailto:pacoeco23@hotmail.com">pacoeco23@hotmail.com</a><br>
-            <a href="mailto:equintero13@alumnos.uaq.mx">equintero13@alumnos.uaq.mx</a><br>
-            <a href="mailto:bgarduno05@alumnos.uaq.mx">bgarduno05@alumnos.uaq.mx</a>
+            <p>Para mas informacion contactar:</p>
+            <a href="mailto:pacoeco23@hotmail.com"><i class="bi bi-envelope"></i></a><br>
         </div>
     </footer>
 </body>

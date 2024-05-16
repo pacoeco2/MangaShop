@@ -96,15 +96,13 @@ if($query){
 </body>
 
 <footer>
-    <div class="registro">
-        <a href="../Inventario/Registrar_Mangas.php">¿Registrar un manga?</a>
-    </div>
-    <div class="info">
-        <h3>Para mas informacion contactar a:</h3>
-        <a href="mailto:pacoeco23@hotmail.com">pacoeco23@hotmail.com</a><br>
-        <a href="mailto:equintero13@alumnos.uaq.mx">equintero13@alumnos.uaq.mx</a><br>
-        <a href="mailto:bgarduno05@alumnos.uaq.mx">bgarduno05@alumnos.uaq.mx</a>
-    </div>
+        <div class="registro">
+            <a href="../Inventario/Registrar_Mangas.php">¿Registrar un manga?</a>
+        </div>
+        <div class="info">
+            <p>Para mas informacion contactar:</p>
+            <a href="mailto:pacoeco23@hotmail.com"><i class="bi bi-envelope"></i></a><br>
+        </div>
 </footer>
 
 </html>
