@@ -19,15 +19,102 @@ function checkVisibility() {
 window.addEventListener('scroll', checkVisibility);
 checkVisibility();
 
-function agregarAlCarrito(id) {
-    fetch('../php/agregar_al_carrito.php?id=' + id)
-        .then(response => response.json())
-        .then(data => {
-            // Actualiza el sub-menú del carrito
-            const submenuCarrito = document.getElementById('submenu-carrito');
-            submenuCarrito.innerHTML = '';
-            data.carrito.forEach(item => {
-                submenuCarrito.innerHTML += '<p>' + item.nombre + ' - ' + item.precio + ' - Cantidad: ' + item.cantidad + '</p>';
+document.addEventListener('DOMContentLoaded', () => {
+    const carritoIcon = document.getElementById('carrito-icon');
+    const carritoSubmenu = document.getElementById('carrito-submenu');
+    const carritoItems = document.getElementById('carrito-items');
+    const carritoTotal = document.getElementById('carrito-total');
+    const carritoCount = document.createElement('span'); // Crear el contador de carrito
+    carritoCount.id = 'carrito-count';
+    carritoIcon.appendChild(carritoCount);
+
+    const carrito = [];
+
+    carritoIcon.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent triggering of document's click event
+        carritoSubmenu.classList.toggle('visible');
+    });
+
+    carritoSubmenu.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent triggering of document's click event
+    });
+
+    document.addEventListener('click', () => {
+        carritoSubmenu.classList.remove('visible'); // Hide submenu when anywhere else on the document is clicked
+    });
+
+    document.querySelectorAll('.CarritoP').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const button = event.currentTarget;
+            const id = button.dataset.id;
+            const nombre = button.dataset.nombre;
+            const precio = parseFloat(button.dataset.precio);
+            const imagen = button.dataset.imagen;
+
+            const cantidadInput = button.previousElementSibling.querySelector('.cantidad');
+            const cantidad = parseInt(cantidadInput.value);
+
+            const existingItem = carrito.find(item => item.id === id);
+            if (existingItem) {
+                existingItem.cantidad += cantidad;
+            } else {
+                carrito.push({ id, nombre, precio, imagen, cantidad });
+            }
+
+            renderCarrito();
+        });
+    });
+
+    document.querySelectorAll('.cantidad-selector .plus').forEach(button => {
+        button.addEventListener('click', () => {
+            const cantidadInput = button.previousElementSibling;
+            cantidadInput.value = parseInt(cantidadInput.value) + 1;
+        });
+    });
+
+    document.querySelectorAll('.cantidad-selector .minus').forEach(button => {
+        button.addEventListener('click', () => {
+            const cantidadInput = button.nextElementSibling;
+            if (parseInt(cantidadInput.value) > 1) {
+                cantidadInput.value = parseInt(cantidadInput.value) - 1;
+            }
+        });
+    });
+
+    function renderCarrito() {
+        carritoItems.innerHTML = '';
+        let total = 0;
+        let totalItems = 0;
+
+        carrito.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'carrito-item';
+
+            itemElement.innerHTML = `
+                <img src="${item.imagen}" alt="${item.nombre}">
+                <div class="carrito-item-details">
+                    <p>${item.nombre}</p>
+                    <p>$${item.precio.toFixed(2)} x ${item.cantidad}</p>
+                </div>
+                <button class="eliminar-item" data-id="${item.id}"><i class="bi bi-trash"></i></button>
+            `;
+
+            carritoItems.appendChild(itemElement);
+            total += item.precio * item.cantidad;
+            totalItems += item.cantidad;
+
+            // Add event listener to the "Eliminar item" button
+            itemElement.querySelector('.eliminar-item').addEventListener('click', (event) => {
+                const id = event.currentTarget.dataset.id;
+                const index = carrito.findIndex(item => item.id === id);
+                if (index !== -1) {
+                    carrito.splice(index, 1); // Eliminar el elemento del carrito
+                    renderCarrito(); // Renderizar de nuevo el carrito
+                }
             });
         });
-}
+
+        carritoTotal.textContent = `Total: $${total.toFixed(2)}`;
+        carritoCount.textContent = totalItems; // Actualizar el contador de carrito
+    }
+});
