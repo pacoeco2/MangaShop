@@ -60,7 +60,7 @@ if($query){
     </header>
     <div class="Contenedor">
         <?php
-        $bd = new mysqli("localhost","root","","libreria");
+        $bd = new mysqli("localhost","root","Jfaap231;","libreria");
         $id=$_GET["id"];
         $query=mysqli_query($bd,"SELECT * from inventario WHERE id=$id");
         while ($datos=mysqli_fetch_array($query)) {
@@ -72,8 +72,10 @@ if($query){
             echo "<div class='InfoD'>";
             echo "<h1 class='Titulo'>".$datos["Nombre_Manga"]."</h1>";
             echo "<p class='Desc'>".$datos["Descripcion"]."</p>";
+            echo "<div class='Compra'>";
             echo "<p class='Precio'>$".$datos["Precio"]."</p>";
             echo '<button class="CarritoP"><i class="bi bi-cart-plus"></i></button>';
+            echo "</div>";
             echo "</div>";
         }
         ?>
