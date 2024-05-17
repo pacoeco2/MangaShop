@@ -1,7 +1,4 @@
 const fadeInElements = document.querySelectorAll('.fade-in');
-const lista = document.querySelector(".lista");
-const buscador = document.querySelector(".buscador");
-const arregloPrincipal = [];
 
 function checkVisibility() {
     const triggerTop = window.innerHeight / 5;
@@ -21,6 +18,8 @@ function checkVisibility() {
 
 window.addEventListener('scroll', checkVisibility);
 checkVisibility();
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const carritoIcon = document.getElementById('carrito-icon');

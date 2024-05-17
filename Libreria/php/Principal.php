@@ -105,7 +105,10 @@ if($query){
 <header>
     <div class="perfil-container">
         <div>
-            <input type="text" class="buscador">
+            <form method="POST" action="">
+                <input type="text" name="search" class="buscador" placeholder="Buscar manga...">
+                <button type="submit">Buscar</button>
+            </form>
         </div>
         <a class="perfil">
             <img src="<?php echo $imagensrc; ?>" alt="Foto de perfil" style="max-width: 150px; max-height: 150px; border-radius: 50%">
@@ -122,49 +125,57 @@ if($query){
     </div>
 </header>
 <div class="lista">
-    <?php 
-        $que = mysqli_query($conexionU, "SELECT id, Nombre_Manga, Precio, Foto FROM inventario");
+<?php 
+    $searchTerm = '';
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
+        $searchTerm = mysqli_real_escape_string($conexionU, $_POST['search']);
+        $query = "SELECT id, Nombre_Manga, Precio, Foto FROM inventario WHERE Nombre_Manga LIKE '%$searchTerm%'";
+    } else {
+        $query = "SELECT id, Nombre_Manga, Precio, Foto FROM inventario";
+    }
 
-        if($que){
-            while($row = mysqli_fetch_assoc($que)){
-                $nom_man = $row['Nombre_Manga'];
-                $pre_man = $row['Precio'];
-                $portada = $row['Foto'];
-            
-                if($portada){
-                    $tipoImagen1 = "image/jpeg";
-                    $imagenbase64_1 = base64_encode($portada);
-                    $imagensrc_1 = "data:$tipoImagen1;base64,$imagenbase64_1";
-                }else{
-                    $imagensrc_1 = "ruta/a/imagen/por/defecto.jpg";
-                }
-            
-                echo '<div class="Libros fade-in">
-                        <a class="Nombre_Manga">'.$nom_man.'</a>
-                        <a class="portada" href="masinfo.php?id='.$row["id"].'">
-                            <img src="'.$imagensrc_1.'" alt="Portada del Manga" style="max-width: 200px; max-height: 200px">
-                        </a>
-                        <a class="Precio_Manga">$'.$pre_man.'</a>
-                        <div class="cantidad-selector">
-                            <button class="minus">-</button>
-                            <input type="number" class="cantidad" value="1" min="1">
-                            <button class="plus">+</button>
-                        </div>
-                        <button class="CarritoP" 
-                                data-id="'.$row["id"].'" 
-                                data-nombre="'.$nom_man.'" 
-                                data-precio="'.$pre_man.'" 
-                                data-imagen="'.$imagensrc_1.'">
-                            <i class="bi bi-cart-plus"></i>
-                        </button>
-                    </div>';
+    $que = mysqli_query($conexionU,$query);
+
+    if($que){
+        while($row = mysqli_fetch_assoc($que)){
+            $nom_man = $row['Nombre_Manga'];
+            $pre_man = $row['Precio'];
+            $portada = $row['Foto'];
+
+            if($portada){
+                $tipoImagen1 = "image/jpeg";
+                $imagenbase64_1 = base64_encode($portada);
+                $imagensrc_1 = "data:$tipoImagen1;base64,$imagenbase64_1";
+            }else{
+                $imagensrc_1 = "ruta/a/imagen/por/defecto.jpg";
             }
-        }else{
-            echo "Error en la consulta ". mysqli_error($conexionU);
-            exit();
+        
+            echo '<div class="Libros fade-in">
+                    <a class="Nombre_Manga">'.$nom_man.'</a>
+                    <a class="portada" href="masinfo.php?id='.$row["id"].'">
+                        <img src="'.$imagensrc_1.'" alt="Portada del Manga" style="max-width: 200px; max-height: 200px">
+                    </a>
+                    <a class="Precio_Manga">$'.$pre_man.'</a>
+                    <div class="cantidad-selector">
+                        <button class="minus">-</button>
+                        <input type="number" class="cantidad" value="1" min="1">
+                        <button class="plus">+</button>
+                    </div>
+                    <button class="CarritoP" 
+                            data-id="'.$row["id"].'" 
+                            data-nombre="'.$nom_man.'" 
+                            data-precio="'.$pre_man.'" 
+                            data-imagen="'.$imagensrc_1.'">
+                        <i class="bi bi-cart-plus"></i>
+                    </button>
+                </div>';
         }
+    }else{
+        echo "Error en la consulta ". mysqli_error($conexionU);
+        exit();
+    }
 
-        mysqli_close($conexionU);
+    mysqli_close($conexionU);
     ?>
 </div>
 <script src="../js/Principal.js"></script>
