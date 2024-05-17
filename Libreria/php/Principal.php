@@ -104,6 +104,9 @@ if($query){
 <body>
 <header>
     <div class="perfil-container">
+        <div>
+            <input type="text" class="buscador">
+        </div>
         <a class="perfil">
             <img src="<?php echo $imagensrc; ?>" alt="Foto de perfil" style="max-width: 150px; max-height: 150px; border-radius: 50%">
         </a>
@@ -118,52 +121,52 @@ if($query){
         </div>
     </div>
 </header>
+<div class="lista">
+    <?php 
+        $que = mysqli_query($conexionU, "SELECT id, Nombre_Manga, Precio, Foto FROM inventario");
 
-<?php 
-    $que = mysqli_query($conexionU, "SELECT id, Nombre_Manga, Precio, Foto FROM inventario");
-
-    if($que){
-        while($row = mysqli_fetch_assoc($que)){
-            $nom_man = $row['Nombre_Manga'];
-            $pre_man = $row['Precio'];
-            $portada = $row['Foto'];
-        
-            if($portada){
-                $tipoImagen1 = "image/jpeg";
-                $imagenbase64_1 = base64_encode($portada);
-                $imagensrc_1 = "data:$tipoImagen1;base64,$imagenbase64_1";
-            }else{
-                $imagensrc_1 = "ruta/a/imagen/por/defecto.jpg";
+        if($que){
+            while($row = mysqli_fetch_assoc($que)){
+                $nom_man = $row['Nombre_Manga'];
+                $pre_man = $row['Precio'];
+                $portada = $row['Foto'];
+            
+                if($portada){
+                    $tipoImagen1 = "image/jpeg";
+                    $imagenbase64_1 = base64_encode($portada);
+                    $imagensrc_1 = "data:$tipoImagen1;base64,$imagenbase64_1";
+                }else{
+                    $imagensrc_1 = "ruta/a/imagen/por/defecto.jpg";
+                }
+            
+                echo '<div class="Libros fade-in">
+                        <a class="Nombre_Manga">'.$nom_man.'</a>
+                        <a class="portada" href="masinfo.php?id='.$row["id"].'">
+                            <img src="'.$imagensrc_1.'" alt="Portada del Manga" style="max-width: 200px; max-height: 200px">
+                        </a>
+                        <a class="Precio_Manga">$'.$pre_man.'</a>
+                        <div class="cantidad-selector">
+                            <button class="minus">-</button>
+                            <input type="number" class="cantidad" value="1" min="1">
+                            <button class="plus">+</button>
+                        </div>
+                        <button class="CarritoP" 
+                                data-id="'.$row["id"].'" 
+                                data-nombre="'.$nom_man.'" 
+                                data-precio="'.$pre_man.'" 
+                                data-imagen="'.$imagensrc_1.'">
+                            <i class="bi bi-cart-plus"></i>
+                        </button>
+                    </div>';
             }
-        
-            echo '<div class="Libros fade-in">
-                    <a class="Nombre_Manga">'.$nom_man.'</a>
-                    <a class="portada" href="masinfo.php?id='.$row["id"].'">
-                        <img src="'.$imagensrc_1.'" alt="Portada del Manga" style="max-width: 200px; max-height: 200px">
-                    </a>
-                    <a class="Precio_Manga">$'.$pre_man.'</a>
-                    <div class="cantidad-selector">
-                        <button class="minus">-</button>
-                        <input type="number" class="cantidad" value="1" min="1">
-                        <button class="plus">+</button>
-                    </div>
-                    <button class="CarritoP" 
-                            data-id="'.$row["id"].'" 
-                            data-nombre="'.$nom_man.'" 
-                            data-precio="'.$pre_man.'" 
-                            data-imagen="'.$imagensrc_1.'">
-                        <i class="bi bi-cart-plus"></i>
-                    </button>
-                  </div>';
+        }else{
+            echo "Error en la consulta ". mysqli_error($conexionU);
+            exit();
         }
-    }else{
-        echo "Error en la consulta ". mysqli_error($conexionU);
-        exit();
-    }
 
-    mysqli_close($conexionU);
-?>
-
+        mysqli_close($conexionU);
+    ?>
+</div>
 <script src="../js/Principal.js"></script>
 <footer>
     <div class="registro">

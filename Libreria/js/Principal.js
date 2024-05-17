@@ -1,4 +1,7 @@
 const fadeInElements = document.querySelectorAll('.fade-in');
+const lista = document.querySelector(".lista");
+const buscador = document.querySelector(".buscador");
+const arregloPrincipal = [];
 
 function checkVisibility() {
     const triggerTop = window.innerHeight / 5;
