@@ -39,16 +39,15 @@ header {
 
 .Contenedor {
     display: flex;
-    /* flex-direction: row; */
-    /* align-items: stretch; */
 }
 
 .Portada{
     display: flex;
     margin:120px;
     border-radius:20px;
-    width:100%;
+    width: 80%;
     flex-direction: column;
+    height: auto;
 }
 
 .InfoD{
@@ -58,19 +57,30 @@ header {
 .Titulo{
     display:flex;
     justify-content: center;
-    padding-block-start:30%;
+    padding-block-start: 10%;
+    font-size: xxx-large;
 }
 
 .Desc{
     display:flex;
     text-align:justify;
-    padding:10%;
+    padding: 10% 25% 10% 25%;
+    font-size: larger;
+}
+.Compra{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+.Precio{
+    font-size: xx-large;
+    margin-left: 25%;
 }
 
-.Precio{
-    display:flex;
-    padding-block-start:10%;
-    justify-content: center;
+.CarritoP{
+    font-size:larger;
+    margin-right: 25%;
 }
 
 footer {
@@ -81,6 +91,7 @@ footer {
     bottom: 0;
     width: 100%;
     flex-direction: row-reverse;
+    position: fixed;
     justify-content: center;
 }
 
