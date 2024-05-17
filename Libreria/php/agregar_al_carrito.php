@@ -4,7 +4,7 @@ session_start();
 $id = $_GET['id'];
 
 // Conéctate a la base de datos y obtén los detalles del manga
-$conexionU = new mysqli('localhost', 'root', '', 'libreria');
+$conexionU = new mysqli('localhost', 'root', 'Jfaap231;', 'libreria');
 $query = mysqli_query($conexionU, "SELECT Nombre_Manga, Precio FROM inventario WHERE id = '$id'");
 
 if ($query) {

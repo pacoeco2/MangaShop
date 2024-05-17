@@ -123,6 +123,11 @@ header {
     background-color: #ff4146;
 }
 
+.carrito-item-details a{
+    color: #000;
+}
+
+/*Estilos cuerpo*/
 .container {
     display: flex;
     flex-wrap: wrap;

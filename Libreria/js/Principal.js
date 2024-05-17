@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             itemElement.innerHTML = `
                 <img src="${item.imagen}" alt="${item.nombre}">
                 <div class="carrito-item-details">
-                    <p>${item.nombre}</p>
+                    <a href="masinfo.php?id=${item.id}">${item.nombre}</a>
                     <p>$${item.precio.toFixed(2)} x ${item.cantidad}</p>
                 </div>
                 <button class="eliminar-item" data-id="${item.id}"><i class="bi bi-trash"></i></button>
