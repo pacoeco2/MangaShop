@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    margin-bottom: 100px;
 }
 
 header {
@@ -32,6 +33,23 @@ header {
     height: 50px;
 }
 
+.carrito {
+    position: relative;
+}
+
+#submenu-carrito {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.carrito:hover #submenu-carrito {
+    display: block;
+}
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -45,7 +63,7 @@ header {
     align-items: center;
     margin: 10px;
     padding: 20px;
-    width: 200px;
+    width: 318px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -58,41 +76,16 @@ header {
 footer {
     background-color: #333;
     color: #fff;
-    display: flex;
     text-align: center;
+    padding: 10px 0;
+    position: fixed;
     bottom: 0;
     width: 100%;
-    flex-direction: row-reverse;
-    justify-content: center;
 }
 
-.registro{
-    width:40%;
-    align-content:center;
-    margin:10px;
-    background-color:gray;
-    border-radius:15px;
-}
-.info{
-    width:40%;
-    margin:10px;
-    align-content:center;
-    background-color:gray;
-    border-radius:15px;
-}
-
-footer a{
-    color:white;
-    text-decoration:none;
-    padding:2px;
-}
-
-footer a i{
-    display: flex;
-    scale:1.5;
-    margin:5px;
-}
-
-footer a:hover{
-    color:black;
+.Info{
+    display:inline;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px 0 0;
 }
