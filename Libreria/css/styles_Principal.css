@@ -76,16 +76,47 @@ header {
 footer {
     background-color: #333;
     color: #fff;
+    display: flex;
     text-align: center;
-    padding: 10px 0;
-    position: fixed;
     bottom: 0;
     width: 100%;
+    flex-direction: row-reverse;
+    position: fixed;
+    justify-content: center;
 }
 
-.Info{
-    display:inline;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 50px 0 0;
+.registro{
+    width:40%;
+    align-content:center;
+    margin:10px;
+    background-color:gray;
+    border-radius:15px;
+}
+.info{
+    width:40%;
+    margin:10px;
+    align-content:center;
+    background-color:gray;
+    border-radius:15px;
+}
+
+.info a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+footer a{
+    color:white;
+    text-decoration:none;
+    padding:2px;
+}
+
+footer a i{
+    display: flex;
+    scale:1.5;
+    margin:5px;
+}
+
+footer a:hover{
+    color:black;
 }
