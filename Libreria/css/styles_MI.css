@@ -45,7 +45,7 @@ header {
     display: flex;
     margin:120px;
     border-radius:20px;
-    width: 60%;
+    width: 30%;
     flex-direction: column;
     height: auto;
 }
