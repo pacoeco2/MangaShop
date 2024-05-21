@@ -20,7 +20,6 @@ window.addEventListener('scroll', checkVisibility);
 checkVisibility();
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const carritoIcon = document.getElementById('carrito-icon');
     const carritoSubmenu = document.getElementById('carrito-submenu');

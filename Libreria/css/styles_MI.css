@@ -67,15 +67,24 @@ header {
     padding: 0% 20% 10% 20%;
     font-size: larger;
 }
-.Compra{
+.CompraI{
     display:flex;
     justify-content: space-around;
     align-items: center;
     align-content: center;
 }
+
 .Precio{
     font-size: xx-large;
     margin-left: 25%;
+}
+
+.Compra{
+    display: flex;
+}
+
+.cantidad{
+    width: 3vw;
 }
 
 .CarritoP{

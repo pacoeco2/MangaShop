@@ -49,6 +49,10 @@ if($query){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/styles_Principal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Libreria</title>
     <style>
         .fade-in {
@@ -58,7 +62,6 @@ if($query){
         .fade-in.visible {
             opacity: 1;
         }
-        /* Estilos adicionales para el carrito */
         .carrito-container {
             position: relative;
         }
@@ -99,6 +102,65 @@ if($query){
             padding: 10px;
             font-weight: bold;
         }
+        .menu-icon {
+            cursor: pointer;
+            margin-left: 75vw;
+            height:10px;
+        }
+        .side-menu {
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            right: -250px;
+            transition: right 0.3s ease;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+            padding-top: 20px; 
+        }
+        .user-info {
+            text-align: center;
+            margin-bottom: 30px; 
+        }
+        .user-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            margin-top:50px;
+        }
+        .username {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .menu-options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .menu-options li {
+            margin: 20px 0; 
+        }
+        .menu-options a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .menu-options a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+            flex-direction: row-reverse;
+            position: fixed;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -110,11 +172,7 @@ if($query){
                 <button type="submit">Buscar</button>
             </form>
         </div>
-        <a class="perfil">
-            <img src="<?php echo $imagensrc; ?>" alt="Foto de perfil" style="max-width: 150px; max-height: 150px; border-radius: 50%">
-        </a>
-        <a class="nombre"><?php echo $nombreUsu ?></a>
-        <a href="Cerrar_sesion.php">Cerrar sesión</a>
+        <p class="menu-icon"><span class="glyphicon glyphicon-align-justify"></span></p>
         <div class="carrito-container">
             <i class="bi bi-cart" id="carrito-icon"></i>
             <div class="carrito-submenu" id="carrito-submenu">
@@ -124,6 +182,18 @@ if($query){
         </div>
     </div>
 </header>
+
+<div class="side-menu">
+    <div class="user-info">
+        <img src="<?php echo $imagensrc; ?>" alt="Foto de usuario" class="user-photo">
+        <p class="username"><?php echo $nombreUsu ?></p>
+    </div>
+    <ul class="menu-options">
+        <li><a href="" id="change-photo">Cambiar foto</a></li>
+        <li><a href="Cerrar_sesion.php">Cerrar sesión</a></li>
+    </ul>
+</div>
+
 <div class="lista">
 <?php 
     $searchTerm = '';
@@ -136,49 +206,62 @@ if($query){
 
     $que = mysqli_query($conexionU,$query);
 
-    if($que){
-        while($row = mysqli_fetch_assoc($que)){
-            $nom_man = $row['Nombre_Manga'];
-            $pre_man = $row['Precio'];
-            $portada = $row['Foto'];
-
-            if($portada){
-                $tipoImagen1 = "image/jpeg";
-                $imagenbase64_1 = base64_encode($portada);
-                $imagensrc_1 = "data:$tipoImagen1;base64,$imagenbase64_1";
-            }else{
-                $imagensrc_1 = "ruta/a/imagen/por/defecto.jpg";
+        if($que){
+            while($row = mysqli_fetch_assoc($que)){
+                $nom_man = $row['Nombre_Manga'];
+                $pre_man = $row['Precio'];
+                $portada = $row['Foto'];
+            
+                if($portada){
+                    $tipoImagen1 = "image/jpeg";
+                    $imagenbase64_1 = base64_encode($portada);
+                    $imagensrc_1 = "data:$tipoImagen1;base64,$imagenbase64_1";
+                }else{
+                    $imagensrc_1 = "ruta/a/imagen/por/defecto.jpg";
+                }
+            
+                echo '<div class="Libros fade-in">
+                        <a class="Nombre_Manga">'.$nom_man.'</a>
+                        <a class="portada" href="masinfo.php?id='.$row["id"].'">
+                            <img src="'.$imagensrc_1.'" alt="Portada del Manga" style="max-width: 200px; max-height: 200px">
+                        </a>
+                        <a class="Precio_Manga">$'.$pre_man.'</a>
+                        <div class="cantidad-selector">
+                            <button class="minus">-</button>
+                            <input type="number" class="cantidad" value="1" min="1">
+                            <button class="plus">+</button>
+                        </div>
+                        <button class="CarritoP" 
+                                data-id="'.$row["id"].'" 
+                                data-nombre="'.$nom_man.'" 
+                                data-precio="'.$pre_man.'" 
+                                data-imagen="'.$imagensrc_1.'">
+                            <i class="bi bi-cart-plus"></i>
+                        </button>
+                    </div>';
             }
-        
-            echo '<div class="Libros fade-in">
-                    <a class="Nombre_Manga">'.$nom_man.'</a>
-                    <a class="portada" href="masinfo.php?id='.$row["id"].'">
-                        <img src="'.$imagensrc_1.'" alt="Portada del Manga" style="max-width: 200px; max-height: 200px">
-                    </a>
-                    <a class="Precio_Manga">$'.$pre_man.'</a>
-                    <div class="cantidad-selector">
-                        <button class="minus">-</button>
-                        <input type="number" class="cantidad" value="1" min="1">
-                        <button class="plus">+</button>
-                    </div>
-                    <button class="CarritoP" 
-                            data-id="'.$row["id"].'" 
-                            data-nombre="'.$nom_man.'" 
-                            data-precio="'.$pre_man.'" 
-                            data-imagen="'.$imagensrc_1.'">
-                        <i class="bi bi-cart-plus"></i>
-                    </button>
-                </div>';
+        }else{
+            echo "Error en la consulta ". mysqli_error($conexionU);
+            exit();
         }
-    }else{
-        echo "Error en la consulta ". mysqli_error($conexionU);
-        exit();
-    }
 
-    mysqli_close($conexionU);
+        mysqli_close($conexionU);
     ?>
 </div>
 <script src="../js/Principal.js"></script>
+<script>
+$(document).ready(function() {
+    $('.menu-icon').click(function() {
+        $('.side-menu').css('right', '0');
+    });
+
+    $(document).click(function(event) {
+        if (!$(event.target).closest('.side-menu, .menu-icon').length) {
+            $('.side-menu').css('right', '-250px');
+        }
+    });
+});
+</script>
 <footer>
     <div class="registro">
         <a href="../Inventario/Registrar_Mangas.php">¿Registrar un manga?</a>

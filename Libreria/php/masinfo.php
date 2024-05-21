@@ -56,6 +56,13 @@ if($query){
             </a>
             <a class = "nombre"><?php echo $nombreUsu ?></a>
             <a href="Cerrar_sesion.php">Cerrar sesión</a>
+            <div class="carrito-container">
+            <i class="bi bi-cart" id="carrito-icon"></i>
+            <div class="carrito-submenu" id="carrito-submenu">
+                <div class="carrito-items" id="carrito-items"></div>
+                <div class="carrito-total" id="carrito-total">Total: $0</div>
+            </div>
+        </div>
         </div>
     </header>
     <div class="Contenedor">
@@ -72,14 +79,28 @@ if($query){
             echo "<div class='InfoD'>";
             echo "<h1 class='Titulo'>".$datos["Nombre_Manga"]."</h1>";
             echo "<p class='Desc'>".$datos["Descripcion"]."</p>";
-            echo "<div class='Compra'>";
-            echo "<p class='Precio'>$".$datos["Precio"]."</p>";
-            echo '<button class="CarritoP"><i class="bi bi-cart-plus"></i></button>';
-            echo "</div>";
+                echo "<div class='CompraI'>";
+                    echo "<p class='Precio'>$".$datos["Precio"]."</p>";
+                        echo '<div class="Compra">';
+                            echo '<div class="cantidad-selector">
+                                    <button class="minus">-</button>
+                                    <input type="number" class="cantidad" value="1" min="1">
+                                    <button class="plus">+</button>
+                                    </div>';
+                            echo '<button class="CarritoP" 
+                                    data-id="'.$row["id"].'" 
+                                    data-nombre="'.$nom_man.'" 
+                                    data-precio="'.$pre_man.'" 
+                                    data-imagen="'.$imagensrc_1.'">
+                                    <i class="bi bi-cart-plus"></i>
+                                    </button>';
+                        echo "</div>";
+                echo "</div>";
             echo "</div>";
         }
         ?>
     </div>
+    <script src="../js/Principal.js"></script>
 
     <footer>
         <div class="registro">
