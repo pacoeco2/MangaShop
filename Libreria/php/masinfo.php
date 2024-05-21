@@ -67,7 +67,7 @@ if($query){
     </header>
     <div class="Contenedor">
         <?php
-        $bd = new mysqli("localhost","root","Jfaap231;","libreria");
+        $bd = new mysqli("localhost","root","","libreria");
         $id=$_GET["id"];
         $query=mysqli_query($bd,"SELECT * from inventario WHERE id=$id");
         while ($datos=mysqli_fetch_array($query)) {
@@ -87,13 +87,7 @@ if($query){
                                     <input type="number" class="cantidad" value="1" min="1">
                                     <button class="plus">+</button>
                                     </div>';
-                            echo '<button class="CarritoP" 
-                                    data-id="'.$row["id"].'" 
-                                    data-nombre="'.$nom_man.'" 
-                                    data-precio="'.$pre_man.'" 
-                                    data-imagen="'.$imagensrc_1.'">
-                                    <i class="bi bi-cart-plus"></i>
-                                    </button>';
+                                    echo '<button class="CarritoP"><i class="bi bi-cart-plus"></i></button>';
                         echo "</div>";
                 echo "</div>";
             echo "</div>";
