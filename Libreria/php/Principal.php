@@ -221,7 +221,7 @@ if($query){
                 }
             
                 echo '<div class="Libros fade-in">
-                        <a class="Nombre_Manga">'.$nom_man.'</a>
+                        <a class="Nombre_Manga" href="masinfo.php?id='.$row["id"].'">'.$nom_man.'</a>
                         <a class="portada" href="masinfo.php?id='.$row["id"].'">
                             <img src="'.$imagensrc_1.'" alt="Portada del Manga" style="max-width: 200px; max-height: 200px">
                         </a>
