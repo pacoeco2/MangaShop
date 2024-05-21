@@ -52,6 +52,101 @@ if($query){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Mas informacion</title>
     <style>
+        
+    .carrito-container {
+        position: relative;
+    }
+
+    #carrito-icon{
+        cursor: pointer;
+    }
+    .carrito-submenu {
+        display: none;
+        position: absolute;
+        top: 40px;
+        right: 0;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 300px;
+        max-height: 400px;
+        overflow-y: auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        color: #000
+    }
+
+    .carrito-submenu.visible {
+        display: block;
+    }
+
+    .carrito-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .carrito-item img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        object-fit: cover; /* Para asegurar que la imagen se ajuste bien */
+    }
+
+    .carrito-item-details {
+        flex-grow: 1;
+    }
+
+    .carrito-item-details p {
+        margin: 0;
+    }
+
+    .carrito-total {
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    .cantidad-selector {
+        display: flex;
+        align-items: center;
+        margin: 5px 0;
+        margin-right:10px;
+    }
+
+    .cantidad-selector button {
+        background-color: #ddd;
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .cantidad-selector input {
+        width: 50px;
+        text-align: center;
+        border: 1px solid #ccc;
+        margin: 0 5px;
+    }
+
+    .cantidad-selector button:active {
+        background-color: #bbb;
+    }
+    .eliminar-item {
+        background-color: #ff5a5f;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .eliminar-item:hover {
+        background-color: #ff4146;
+    }
+
+    .carrito-item-details a{
+        color: #000;
+    }
+
         .fade-in {
             opacity: 0;
             transition: opacity 0.5s;
@@ -101,7 +196,7 @@ if($query){
         }
         .menu-icon {
             cursor: pointer;
-            margin-left: 75vw;
+            margin-right: 3vw;
             height:10px;
         }
         .side-menu {
@@ -238,7 +333,19 @@ if($query){
         ?>
     </div>
     <script src="../js/Principal.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.menu-icon').click(function() {
+                $('.side-menu').css('right', '0');
+            });
 
+            $(document).click(function(event) {
+                if (!$(event.target).closest('.side-menu, .menu-icon').length) {
+                    $('.side-menu').css('right', '-250px');
+                }
+            });
+        });
+    </script>
     <footer>
         <div class="registro">
             <a href="../Inventario/Registrar_Mangas.php">¿Registrar un manga?</a>

@@ -21,7 +21,7 @@ header {
 
 .perfil-container {
     display: flex;
-    justify-content: space-between;
+    justify-content:right;
     align-items: center;
     padding: 0 20px;
 }
@@ -35,98 +35,6 @@ header {
     border-radius: 50%;
     width: 50px;
     height: 50px;
-}
-.carrito-container {
-    position: relative;
-}
-
-#carrito-icon{
-    cursor: pointer;
-}
-.carrito-submenu {
-    display: none;
-    position: absolute;
-    top: 40px;
-    right: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 300px;
-    max-height: 400px;
-    overflow-y: auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    color: #000
-}
-
-.carrito-submenu.visible {
-    display: block;
-}
-
-.carrito-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.carrito-item img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-    object-fit: cover; /* Para asegurar que la imagen se ajuste bien */
-}
-
-.carrito-item-details {
-    flex-grow: 1;
-}
-
-.carrito-item-details p {
-    margin: 0;
-}
-
-.carrito-total {
-    padding: 10px;
-    font-weight: bold;
-}
-
-.cantidad-selector {
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
-}
-
-.cantidad-selector button {
-    background-color: #ddd;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.cantidad-selector input {
-    width: 50px;
-    text-align: center;
-    border: 1px solid #ccc;
-    margin: 0 5px;
-}
-
-.cantidad-selector button:active {
-    background-color: #bbb;
-}
-.eliminar-item {
-    background-color: #ff5a5f;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.eliminar-item:hover {
-    background-color: #ff4146;
-}
-
-.carrito-item-details a{
-    color: #000;
 }
 
 .Contenedor {
