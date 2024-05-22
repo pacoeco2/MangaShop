@@ -263,6 +263,23 @@ $(document).ready(function() {
         }
     });
 });
+function agregarAlCarrito(button) {
+    var id = button.getAttribute('data-id');
+    var nombre = button.getAttribute('data-nombre');
+    var precio = button.getAttribute('data-precio');
+    var imagen = button.getAttribute('data-imagen');
+
+    // Enviar la información del producto al servidor mediante AJAX
+    $.ajax({
+        type: "POST",
+        url: "agregar_al_carrito.php", // Crea este archivo para procesar la solicitud
+        data: {id: id, nombre: nombre, precio: precio, imagen: imagen},
+        success: function(response) {
+            // Manejar la respuesta del servidor si es necesario
+            console.log(response);
+        }
+    });
+}
 </script>
 <footer>
     <div class="registro">
