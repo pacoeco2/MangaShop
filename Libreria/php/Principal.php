@@ -182,7 +182,7 @@ if($query){
             <div class="carrito-submenu" id="carrito-submenu">
                 <div class="carrito-items" id="carrito-items"></div>
                 <div class="carrito-total" id="carrito-total">Total: $0</div>
-                <a href="carrito.php">Ver carrito de compras</a>
+                <a href="carrito.php" class="">Ver carrito de compras</a>
             </div>
         </div>
     </div>

@@ -1,0 +1,84 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .headerC{
+            display: flex;
+            width: 90%;
+            margin-left: 5%;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .headerC img {
+            max-width: 150px;
+            max-height: 150px;
+            border: 3px solid white;
+            border-radius: 5px;
+        }
+        .headerC h2 {
+            margin: 10px 0;
+        }
+        .headerC a {
+            color: white;
+            text-decoration: none;
+            background-color: #dc3545;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .headerC a:hover {
+            background-color: #c82333;
+        }
+        .carrito-container {
+            width: 80%;
+            margin: 30px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .carrito-container h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        .carrito-items {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            justify-content: space-evenly;
+        }
+        .carrito-items:last-child {
+            border-bottom: none;
+        }
+        .carrito-items img {
+            max-height: 200px;
+            margin-right: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .carrito-total {
+            text-align: right;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .carrito-empty {
+            text-align: center;
+            font-size: 20px;
+            color: #666;
+        }
