@@ -102,6 +102,10 @@ if($query){
             padding: 10px;
             font-weight: bold;
         }
+
+        .buscar,.buscador,.bus{
+            color: black;
+        }
         .menu-icon {
             cursor: pointer;
             margin-left: 75vw;
@@ -164,7 +168,7 @@ if($query){
         .info p {
             margin-block-end: 0;
             margin-block-start: 5px;
-        }  
+        }
     </style>
 </head>
 <body>
@@ -173,7 +177,7 @@ if($query){
         <div>
             <form method="POST" action="">
                 <input type="text" name="search" class="buscador" placeholder="Buscar manga...">
-                <button type="submit">Buscar</button>
+                <button type="submit" class="buscar">Buscar</button>
             </form>
         </div>
         <p class="menu-icon"><span class="glyphicon glyphicon-align-justify"></span></p>
@@ -182,7 +186,7 @@ if($query){
             <div class="carrito-submenu" id="carrito-submenu">
                 <div class="carrito-items" id="carrito-items"></div>
                 <div class="carrito-total" id="carrito-total">Total: $0</div>
-                <a href="carrito.php" class="">Ver carrito de compras</a>
+                <a href="carrito.php"><button class="bus">Ver carrito de compras</button></a>
             </div>
         </div>
     </div>

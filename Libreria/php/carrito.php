@@ -54,7 +54,9 @@ if ($query) {
 <body>
 <header>
     <div class="headerC">
+        <a href="Principal.php">
         <img src="<?php echo $imagensrc; ?>" alt="Foto de perfil">
+        </a>
         <h2><?php echo $nombreUsu; ?></h2>
         <a href="Cerrar_sesion.php">Cerrar sesión</a>
     </div>
@@ -65,14 +67,17 @@ if ($query) {
     <?php
     $total = 0;
     if (!empty($_SESSION['carrito'])) {
-        foreach ($_SESSION['carrito'] as $producto) {
+        foreach ($_SESSION['carrito'] as $index => $producto) {
             echo '<div class="carrito-items">';
             echo '<img src="' . $producto['imagen'] . '" alt="Imagen del producto">';
             echo '<div class="carrito-items-details">';
             echo '<h4><strong>' . $producto['nombre'] . '</strong></h4>';
             echo '<p>Precio: $' . $producto['precio'] . '</p>';
             echo '<p>Cantidad: ' . $producto['cantidad'] . '</p>';
-            echo '<button>Eliminar articulo</button>';
+            echo '<form method="post" action="eliminar_articulo.php">';
+            echo '<input type="hidden" name="index" value="' . $index . '">';
+            echo '<button type="submit">Eliminar articulo</button>';
+            echo '</form>';
             echo '</div>';
             echo '</div>';
             $total += $producto['precio'] * $producto['cantidad'];
