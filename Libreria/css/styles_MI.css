@@ -81,6 +81,7 @@ header {
 
 .Compra{
     display: flex;
+    justify-content: space-evenly;
 }
 
 .cantidad{

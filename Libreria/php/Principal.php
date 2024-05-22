@@ -178,6 +178,7 @@ if($query){
             <div class="carrito-submenu" id="carrito-submenu">
                 <div class="carrito-items" id="carrito-items"></div>
                 <div class="carrito-total" id="carrito-total">Total: $0</div>
+                <a href="carrito.php">Ver carrito de compras</a>
             </div>
         </div>
     </div>
@@ -235,7 +236,8 @@ if($query){
                                 data-id="'.$row["id"].'" 
                                 data-nombre="'.$nom_man.'" 
                                 data-precio="'.$pre_man.'" 
-                                data-imagen="'.$imagensrc_1.'">
+                                data-imagen="'.$imagensrc_1.'"
+                                onclick="agregarAlCarrito(this)">
                             <i class="bi bi-cart-plus"></i>
                         </button>
                     </div>';

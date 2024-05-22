@@ -1,36 +1,26 @@
 <?php
 session_start();
 
-$id = $_GET['id'];
-
-// Conéctate a la base de datos y obtén los detalles del manga
-$conexionU = new mysqli('localhost', 'root', 'Jfaap231;', 'libreria');
-$query = mysqli_query($conexionU, "SELECT Nombre_Manga, Precio FROM inventario WHERE id = '$id'");
-
-if ($query) {
-    if (mysqli_num_rows($query) > 0) {
-        $row = mysqli_fetch_assoc($query);
-        $nombre = $row['Nombre_Manga'];
-        $precio = '$'. $row['Precio'];
-
-        if (!isset($_SESSION['carrito'][$id])) {
-            $_SESSION['carrito'][$id] = array(
-                'nombre' => $nombre,
-                'precio' => $precio,
-                'cantidad' => 0
-            );
-        }
-
-        $_SESSION['carrito'][$id]['cantidad']++;
-
-        header('Content-Type: application/json');
-        echo json_encode(array('carrito' => array_values($_SESSION['carrito'])));
-    } else {
-        echo "Error: Manga no encontrado en la base de datos";
-        exit();
-    }
-} else {
-    echo "Error en la consulta " . mysqli_error($conexionU);
-    exit();
+// Verifica si la sesión del carrito está iniciada
+if (!isset($_SESSION['carrito'])) {
+    $_SESSION['carrito'] = array();
 }
+
+// Recibe los datos del producto enviado por AJAX
+$id = $_POST['id'];
+$nombre = $_POST['nombre'];
+$precio = $_POST['precio'];
+$imagen = $_POST['imagen'];
+
+// Agrega el producto al arreglo del carrito
+$_SESSION['carrito'][] = array(
+    'id' => $id,
+    'nombre' => $nombre,
+    'precio' => $precio,
+    'imagen' => $imagen,
+    'cantidad' => 1 // Puedes establecer una cantidad predeterminada si lo deseas
+);
+
+// Responde con un mensaje indicando que el producto fue agregado al carrito
+echo "Producto agregado al carrito correctamente";
 ?>
