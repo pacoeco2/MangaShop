@@ -253,6 +253,10 @@ if($query){
             position: fixed;
             justify-content: center;
         }
+        .info p {
+            margin-block-end: 0;
+            margin-block-start: 5px;
+        }
     </style>
 </head>
 <body>
