@@ -279,19 +279,16 @@ function agregarAlCarrito(button) {
     var cantidadInput = button.previousElementSibling.querySelector('.cantidad');
     var cantidad = parseInt(cantidadInput.value);
     // Enviar la información del producto al servidor mediante AJAX
-    let i=0;
-    while (i < cantidad) {
     $.ajax({
         type: "POST",
         url: "agregar_al_carrito.php", // Crea este archivo para procesar la solicitud
-        data: {id: id, nombre: nombre, precio: precio, imagen: imagen},
+        data: {id: id, nombre: nombre, precio: precio, imagen: imagen, cantidad: cantidad},
         success: function(response) {
             // Manejar la respuesta del servidor si es necesario
             console.log(response);
         }
     });
     i++;
-}
 }
 </script>
 <footer>

@@ -11,6 +11,7 @@ $id = $_POST['id'];
 $nombre = $_POST['nombre'];
 $precio = $_POST['precio'];
 $imagen = $_POST['imagen'];
+$cantidad = $_POST['cantidad'];
 
 // Agrega el producto al arreglo del carrito
 $_SESSION['carrito'][] = array(
@@ -18,7 +19,7 @@ $_SESSION['carrito'][] = array(
     'nombre' => $nombre,
     'precio' => $precio,
     'imagen' => $imagen,
-    'cantidad' => 1 // Puedes establecer una cantidad predeterminada si lo deseas
+    'cantidad' => $cantidad // Puedes establecer una cantidad predeterminada si lo deseas
 );
 
 // Responde con un mensaje indicando que el producto fue agregado al carrito
