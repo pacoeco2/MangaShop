@@ -335,8 +335,11 @@ if($query){
     var nombre = button.getAttribute('data-nombre');
     var precio = button.getAttribute('data-precio');
     var imagen = button.getAttribute('data-imagen');
-
+    var cantidadInput = button.previousElementSibling.querySelector('.cantidad');
+    var cantidad = parseInt(cantidadInput.value);
     // Enviar la información del producto al servidor mediante AJAX
+    let i=0;
+    while (i < cantidad) {
     $.ajax({
         type: "POST",
         url: "agregar_al_carrito.php", // Crea este archivo para procesar la solicitud
@@ -346,6 +349,8 @@ if($query){
             console.log(response);
         }
     });
+    i++;
+}
 }
     </script>
     <footer>
