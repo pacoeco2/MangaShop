@@ -280,7 +280,7 @@ if($query){
 </div>
     <div class="Contenedor">
         <?php
-        $bd = new mysqli("localhost","root","Jfaap231;","libreria");
+        $bd = new mysqli("localhost","root","","libreria");
         $id=$_GET["id"];
         $query=mysqli_query($bd,"SELECT * from inventario WHERE id=$id");
         while ($datos=mysqli_fetch_array($query)) {
