@@ -149,6 +149,7 @@ if ($query) {
             echo '<p><strong>' . $producto['nombre'] . '</strong></p>';
             echo '<p>Precio: $' . $producto['precio'] . '</p>';
             echo '<p>Cantidad: ' . $producto['cantidad'] . '</p>';
+            echo '<button>Eliminar articulo</button>';
             echo '</div>';
             echo '</div>';
             $total += $producto['precio'] * $producto['cantidad'];

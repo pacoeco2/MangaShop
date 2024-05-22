@@ -268,6 +268,7 @@ if($query){
             <div class="carrito-submenu" id="carrito-submenu">
                 <div class="carrito-items" id="carrito-items"></div>
                 <div class="carrito-total" id="carrito-total">Total: $0</div>
+                <a href="carrito.php">Ver carrito de compras</a>
             </div>
         </div>
     </div>
@@ -307,7 +308,8 @@ if($query){
                 data-id="'.$datos["id"].'" 
                 data-nombre="'.$datos["Nombre_Manga"].'" 
                 data-precio="'.$datos["Precio"].'" 
-                data-imagen="'.$imagensrc_1.'">
+                data-imagen="'.$imagensrc_1.'"
+                onclick="agregarAlCarrito(this)">
                 <i class="bi bi-cart-plus"></i>
                 </button>';
             echo "</div>";
@@ -328,6 +330,23 @@ if($query){
                 }
             });
         });
+        function agregarAlCarrito(button) {
+    var id = button.getAttribute('data-id');
+    var nombre = button.getAttribute('data-nombre');
+    var precio = button.getAttribute('data-precio');
+    var imagen = button.getAttribute('data-imagen');
+
+    // Enviar la información del producto al servidor mediante AJAX
+    $.ajax({
+        type: "POST",
+        url: "agregar_al_carrito.php", // Crea este archivo para procesar la solicitud
+        data: {id: id, nombre: nombre, precio: precio, imagen: imagen},
+        success: function(response) {
+            // Manejar la respuesta del servidor si es necesario
+            console.log(response);
+        }
+    });
+}
     </script>
     <footer>
         <div class="registro">
