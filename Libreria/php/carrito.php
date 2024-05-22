@@ -52,21 +52,64 @@ if ($query) {
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+        }
+        .header img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+        .header h2 {
+            margin: 10px 0;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            background-color: #dc3545;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .header a:hover {
+            background-color: #c82333;
         }
         .carrito-container {
             width: 80%;
-            margin: auto;
-            margin-top: 50px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .carrito-container h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
         }
         .carrito-item {
             display: flex;
             align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .carrito-item:last-child {
+            border-bottom: none;
         }
         .carrito-item img {
             max-width: 100px;
             margin-right: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
         .carrito-item-details {
             flex-grow: 1;
@@ -76,13 +119,14 @@ if ($query) {
         }
         .carrito-total {
             text-align: right;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             margin-top: 20px;
         }
-        .header {
+        .carrito-empty {
             text-align: center;
-            margin-top: 20px;
+            font-size: 20px;
+            color: #666;
         }
     </style>
 </head>
