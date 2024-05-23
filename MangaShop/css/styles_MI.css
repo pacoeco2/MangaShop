@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+p{
+    margin-block-end: 0;
+    margin-block-start: 5px;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.perfil-container {
+    display: flex;
+    justify-content:right;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.perfil-container a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.perfil-container img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.Contenedor {
+    display: flex;
+}
+
+.Portada{
+    display: flex;
+    margin:120px;
+    border-radius:20px;
+    width: 30%;
+    flex-direction: column;
+    height: auto;
+}
+
+.InfoD{
+    display:inline-block;
+}
+
+.Titulo{
+    display:flex;
+    justify-content: center;
+    padding-block-start: 10%;
+    font-size: xxx-large;
+}
+
+.Desc{
+    display:flex;
+    text-align:justify;
+    padding: 0% 20% 10% 20%;
+    font-size: larger;
+}
+.CompraI{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+.Precio{
+    font-size: xx-large;
+    margin-left: 25%;
+}
+
+.Compra{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cantidad{
+    width: 3vw;
+}
+
+.CarritoP{
+    font-size:larger;
+    margin-right: 25%;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    flex-direction: row-reverse;
+    position: fixed;
+    justify-content: center;
+}
+
+.registro{
+    width:40%;
+    align-content:center;
+    margin:10px;
+    background-color:gray;
+    border-radius:15px;
+}
+.info{
+    width:40%;
+    margin:10px;
+    align-content:center;
+    background-color:gray;
+    border-radius:15px;
+}
+
+.info a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+footer a{
+    color:white;
+    text-decoration:none;
+    padding:2px;
+}
+
+footer a i{
+    display: flex;
+    scale:1.5;
+    margin:5px;
+}
+
+footer a:hover{
+    color:black;
+}
